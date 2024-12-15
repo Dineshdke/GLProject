@@ -14,11 +14,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB Atlas Connection
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://taskmanagement:taskmanagement@cluster0.mongodb.net/taskManagementDB?retryWrites=true&w=majority';
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected'))
+const MONGO_URI = process.env.MONGO_URI;
+
+mongoose.connect(MONGO_URI, { retryWrites: true, w: 'majority' })
+  .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
 
