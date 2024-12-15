@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT;
 const SECRET_KEY = "your_jwt_secret_key";
 
 // Middleware
