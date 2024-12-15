@@ -13,9 +13,12 @@ const SECRET_KEY = "your_jwt_secret_key";
 app.use(cors());
 app.use(bodyParser.json());
 
-// MongoDB Connection
-mongoose.connect('mongodb://127.0.0.1:27017/taskManagementDB')
-  .then(() => console.log('MongoDB connected'))
+// MongoDB Atlas Connection
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://taskmanagement:taskmanagement@cluster0.mongodb.net/taskManagementDB?retryWrites=true&w=majority';
+mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
 
