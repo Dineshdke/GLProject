@@ -4,9 +4,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const SECRET_KEY = "your_jwt_secret_key";
 
 // Middleware
@@ -15,6 +16,8 @@ app.use(bodyParser.json());
 
 // MongoDB Atlas Connection
 const MONGO_URI = process.env.MONGO_URI;
+console.log('MongoDB URI:', process.env.MONGO_URI);
+
 
 mongoose.connect(MONGO_URI, { retryWrites: true, w: 'majority' })
   .then(() => console.log('MongoDB connected'))
